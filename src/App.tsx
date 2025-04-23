@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [toDoList, setToDoList] = useState<string[]>([]);
+  const [newToDo, setNewToDo] = useState<string>("");
+
+  const addToDo = (toDo: string) => {
+    return setToDoList([...toDoList, toDo]);
+  };
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          addToDo(newToDo);
+        }}
+      >
+        <input
+          type="text"
+          value={newToDo}
+          onChange={(e) => setNewToDo(e.target.value)}
+        />
+        <button type="submit">Add a to do</button>
+      </form>
+      {toDoList}
     </>
-  )
+  );
 }
 
-export default App
+export default App;
