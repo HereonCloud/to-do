@@ -9,6 +9,14 @@ function App() {
     return setToDoList([...toDoList, toDo]);
   };
 
+  const deleteToDo = (k: number) => {
+    const newToDoList = toDoList.filter((_, key) => {
+      return key !== k;
+    });
+
+    setToDoList(newToDoList);
+  };
+
   return (
     <>
       <form
@@ -24,7 +32,15 @@ function App() {
         />
         <button type="submit">Add a to do</button>
       </form>
-      {toDoList}
+      {toDoList &&
+        toDoList.map((t, k) => {
+          return (
+            <div key={k}>
+              <span>{t}</span>
+              <button onClick={() => deleteToDo(k)}>Delete</button>
+            </div>
+          );
+        })}
     </>
   );
 }
