@@ -2,16 +2,26 @@ import { useState } from "react";
 import "./App.css";
 
 function App() {
-  const [toDoList, setToDoList] = useState<string[]>([]);
+  const [toDoList, setToDoList] = useState<{ toDo: string; isDone: boolean }[]>(
+    []
+  );
   const [newToDo, setNewToDo] = useState<string>("");
 
   const addToDo = (toDo: string) => {
-    return setToDoList([...toDoList, toDo]);
+    return setToDoList([...toDoList, { toDo: toDo, isDone: false }]);
   };
 
   const deleteToDo = (k: number) => {
     const newToDoList = toDoList.filter((_, key) => {
       return key !== k;
+    });
+
+    setToDoList(newToDoList);
+  };
+
+  const toggleToDo = (k: number) => {
+    const newToDoList = toDoList.map((td, key) => {
+      return k === key ? { toDo: td.toDo, isDone: !td.isDone } : td;
     });
 
     setToDoList(newToDoList);
@@ -36,7 +46,14 @@ function App() {
         toDoList.map((t, k) => {
           return (
             <div key={k}>
-              <span>{t}</span>
+              <span
+                style={{
+                  textDecoration: t.isDone ? "line-through" : "none",
+                }}
+              >
+                {t.toDo}
+              </span>
+              <button onClick={() => toggleToDo(k)}>Done</button>
               <button onClick={() => deleteToDo(k)}>Delete</button>
             </div>
           );
