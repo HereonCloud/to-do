@@ -3,19 +3,24 @@ import "./App.css";
 
 function App() {
   const [toDoList, setToDoList] = useState<{ toDo: string; isDone: boolean }[]>(
-    []
+    localStorage.getItem("toDoList")
+      ? JSON.parse(localStorage.getItem("toDoList") as string)
+      : []
   );
   const [newToDo, setNewToDo] = useState<string>("");
 
   const addToDo = (toDo: string) => {
-    return setToDoList([...toDoList, { toDo: toDo, isDone: false }]);
+    const newToDoList = [...toDoList, { toDo: toDo, isDone: false }];
+    localStorage.setItem("toDoList", JSON.stringify(newToDoList));
+    setNewToDo("");
+    return setToDoList(newToDoList);
   };
 
   const deleteToDo = (k: number) => {
     const newToDoList = toDoList.filter((_, key) => {
       return key !== k;
     });
-
+    localStorage.setItem("toDoList", JSON.stringify(newToDoList));
     setToDoList(newToDoList);
   };
 
@@ -23,7 +28,7 @@ function App() {
     const newToDoList = toDoList.map((td, key) => {
       return k === key ? { toDo: td.toDo, isDone: !td.isDone } : td;
     });
-
+    localStorage.setItem("toDoList", JSON.stringify(newToDoList));
     setToDoList(newToDoList);
   };
 
@@ -36,6 +41,7 @@ function App() {
         }}
       >
         <input
+          required
           type="text"
           value={newToDo}
           onChange={(e) => setNewToDo(e.target.value)}
