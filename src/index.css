@@ -7,19 +7,19 @@
   --color-blue: #a0d9ef;
   --color-gray: #c7c4bf;
   --color-white: #ffffff;
+  --color-black: #242424;
 }
 
-:root {
+html,
+body {
+  margin: 0 auto;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   background-color: #242424;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  min-width: 320px;
+  width: 100%;
   width: 100%;
   min-height: 100vh;
 }

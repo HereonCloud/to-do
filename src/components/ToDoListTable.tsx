@@ -10,7 +10,6 @@ export interface ToDoListTableProps {
 
 const ToDoListTable = (p: ToDoListTableProps) => {
   const toggleSelectColor = (status: STATUS) => {
-    console.log(status == STATUS.STUCK);
     switch (status) {
       case STATUS.DONE:
         return 'bg-(--color-green)';
@@ -30,7 +29,7 @@ const ToDoListTable = (p: ToDoListTableProps) => {
           <EmptyContent />
         </div>
       ) : (
-        <div className='overflow-y-auto overflow-x-hidden wrap-break-word whitespace-nowrap max-w-[600px] w-[100%] scroll-smooth'>
+        <div className='overflow-y-auto overflow-x-hidden wrap-break-word whitespace-nowrap w-[100%] scroll-smooth'>
           <table className='w-[100%] h-[100%] border-(--color-yellow) border-1 rounded-md'>
             <thead>
               <tr>
@@ -46,7 +45,7 @@ const ToDoListTable = (p: ToDoListTableProps) => {
                 return (
                   <tr key={k} className='border-(--color-yellow) border-1'>
                     <td
-                      className={`wrap-break-word whitespace-normal overflow-hidden text-(--color-yellow) text-[16px] max-w-[320px] border-1`}
+                      className={`wrap-break-word whitespace-normal overflow-hidden text-(--color-yellow) text-[16px] max-w-[320px]`}
                     >
                       {d.toDo}
                     </td>

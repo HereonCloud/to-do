@@ -17,7 +17,7 @@ const ToDoInput = (p: ToDoInputProps) => {
       className='flex gap-2 justify-center items-center w-[100%]'
     >
       <input
-        className='rounded-4 w-[100%] max-w-[480px]'
+        className='rounded-4 w-[100%]'
         required
         type='text'
         value={newToDo}
@@ -26,6 +26,9 @@ const ToDoInput = (p: ToDoInputProps) => {
 
       <button type='submit'>
         <PlusCircleIcon height={36} width={36} color='var(--color-yellow)' />
+      </button>
+      <button className='text-(--color-black) bg-(--color-white) p-1.5 rounded-sm font-medium w-max'>
+        Generate random task
       </button>
     </form>
   );
