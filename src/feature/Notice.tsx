@@ -6,7 +6,7 @@ interface NoticeProps {
 }
 
 const Notice = (p: NoticeProps) => {
-  return <div className=''></div>;
+  return <div className={`${p.isOpen ? 'block' : 'hidden'}`}></div>;
 };
 
 export default Notice;

@@ -1,9 +1,9 @@
-import { STATUS } from '../utils/constants';
+import { STATUS, ToDoListT } from '../utils/constants';
 import ToDoInput from './../components/ToDoInput';
 import ToDoListTable from './../components/ToDoListTable';
 import { useState } from 'react';
 const ToDoList = () => {
-  const [toDoList, setToDoList] = useState<{ toDo: string; status: STATUS }[]>(
+  const [toDoList, setToDoList] = useState<ToDoListT[]>(
     localStorage.getItem('toDoList')
       ? JSON.parse(localStorage.getItem('toDoList') as string)
       : []
@@ -12,7 +12,7 @@ const ToDoList = () => {
   const addToDo = (toDo: string) => {
     const newToDoList = [...toDoList, { toDo: toDo, status: STATUS.PENDING }];
     localStorage.setItem('toDoList', JSON.stringify(newToDoList));
-
+    window.dispatchEvent(new Event('storage'));
     return setToDoList(newToDoList);
   };
 
@@ -21,6 +21,7 @@ const ToDoList = () => {
       return key !== k;
     });
     localStorage.setItem('toDoList', JSON.stringify(newToDoList));
+    window.dispatchEvent(new Event('storage'));
     setToDoList(newToDoList);
   };
 
@@ -29,10 +30,11 @@ const ToDoList = () => {
       return k === key ? { toDo: td.toDo, status: status } : td;
     });
     localStorage.setItem('toDoList', JSON.stringify(newToDoList));
+    window.dispatchEvent(new Event('storage'));
     setToDoList(newToDoList);
   };
   return (
-    <div className='flex flex-col grow items-center p-[16px] gap-4 border-1 border-(--color-yellow) max-w-[720px] h-[90%] rounded-xs'>
+    <div className='flex flex-col grow items-center p-[16px] gap-4 border-1 border-(--color-yellow) h-[90%] rounded-xs max-w-[100%] w-[100%]'>
       <ToDoInput addToDo={(i) => addToDo(i)} />
       <ToDoListTable
         data={toDoList}

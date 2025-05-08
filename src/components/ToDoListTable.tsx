@@ -1,11 +1,11 @@
 import { TrashIcon } from '@heroicons/react/16/solid';
 import EmptyContent from './EmptyContent';
-import { STATUS } from '../utils/constants';
+import { STATUS, ToDoListT } from '../utils/constants';
 
 export interface ToDoListTableProps {
   deleteToDo: (k: number) => void;
   toggleToDo: (k: number, status: STATUS) => void;
-  data: { toDo: string; status: STATUS }[];
+  data: ToDoListT[];
 }
 
 const ToDoListTable = (p: ToDoListTableProps) => {
