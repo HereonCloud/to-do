@@ -29,7 +29,7 @@ const ToDoListTable = (p: ToDoListTableProps) => {
           <EmptyContent />
         </div>
       ) : (
-        <div className='overflow-y-auto overflow-x-hidden wrap-break-word whitespace-nowrap w-[100%] scroll-smooth'>
+        <div className='overflow-y-auto overflow-x-hidden wrap-break-word whitespace-nowrap w-[100%] scroll-smooth '>
           <table className='w-[100%] h-[100%] border-(--color-yellow) border-1 rounded-md'>
             <thead>
               <tr>
@@ -40,7 +40,7 @@ const ToDoListTable = (p: ToDoListTableProps) => {
                 <td></td>
               </tr>
             </thead>
-            <tbody className='align-top'>
+            <tbody className='align-top h-[100%]'>
               {p.data.map((d, k) => {
                 return (
                   <tr key={k} className='border-(--color-yellow) border-1'>

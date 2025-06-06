@@ -34,7 +34,7 @@ const ToDoList = () => {
     setToDoList(newToDoList);
   };
   return (
-    <div className='flex flex-col grow items-center p-[16px] gap-4 border-1 border-(--color-yellow) h-[90%] rounded-xs max-w-[100%] w-[100%]'>
+    <div className='flex flex-col grow items-center p-[16px] gap-4 border-1 border-(--color-yellow) rounded-xs max-w-[100%] w-[100%]'>
       <ToDoInput addToDo={(i) => addToDo(i)} />
       <ToDoListTable
         data={toDoList}

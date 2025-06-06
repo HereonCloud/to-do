@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Legend, Pie, PieChart, Tooltip } from 'recharts';
+import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
 import { STATUS, ToDoListT } from '../utils/constants';
 
 const StatusChart = () => {
@@ -56,38 +56,41 @@ const StatusChart = () => {
 
   return (
     <>
-      <PieChart
-        width={320}
-        height={200}
-        className='border-y-2 border-amber-50 '
-      >
-        <Pie
-          data={getChartData()}
-          dataKey='value'
-          nameKey='name'
-          cx='50%'
-          cy='50%'
-          innerRadius={50}
-          outerRadius={70}
-        />
-        <Legend
-          iconSize={10}
-          width={135}
-          layout='vertical'
-          verticalAlign='middle'
-          align='right'
-        />
-        <Tooltip
-          contentStyle={{
-            backgroundColor: '#242424',
-            borderRadius: '4px',
-            padding: '4px',
-          }}
-          itemStyle={{
-            backgroundColor: '#242424;',
-          }}
-        />
-      </PieChart>
+      <ResponsiveContainer width={'100%'} height={'100%'}>
+        <div className='w-[100%] flex justify-center'>
+          <PieChart
+            width={320}
+            height={200}
+            className='border-y-2 border-amber-50 '
+          >
+            <Pie
+              data={getChartData()}
+              dataKey='value'
+              nameKey='name'
+              cx='50%'
+              cy='50%'
+              innerRadius={50}
+              outerRadius={70}
+            />
+            <Legend
+              iconSize={10}
+              layout='vertical'
+              verticalAlign='middle'
+              align='right'
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#242424',
+                borderRadius: '4px',
+                padding: '4px',
+              }}
+              itemStyle={{
+                backgroundColor: '#242424;',
+              }}
+            />
+          </PieChart>
+        </div>
+      </ResponsiveContainer>
     </>
   );
 };

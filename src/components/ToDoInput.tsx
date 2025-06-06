@@ -27,9 +27,6 @@ const ToDoInput = (p: ToDoInputProps) => {
       <button type='submit'>
         <PlusCircleIcon height={36} width={36} color='var(--color-yellow)' />
       </button>
-      <button className='text-(--color-black) bg-(--color-white) p-1.5 rounded-sm font-medium w-max'>
-        Generate random task
-      </button>
     </form>
   );
 };
